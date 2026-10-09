@@ -336,12 +336,28 @@ textarea { resize: vertical; }
   font-size: 11px;
 }
 .upload-result-name {
+  min-width: 0;
   overflow: hidden;
   color: #3b4558;
   font-weight: 700;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.upload-remove {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  margin: -3px -5px -3px 0;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  color: #7b8497;
+  background: transparent;
+}
+.upload-remove:hover { color: #b42332; background: #fff0f0; }
+.upload-remove:focus-visible { outline: 2px solid #5146d8; outline-offset: 2px; }
 .upload-result-completed .upload-result-name { color: #187648; }
 .upload-result-failed .upload-result-name,
 .upload-result-evaluation-failed .upload-result-name { color: #b42332; }

@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Sparkles } from "lucide-react";
+import { Sparkles, X } from "lucide-react";
 import { uploadResume } from "../services/candidateService";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
@@ -45,6 +45,17 @@ export default function ResumeUpload({ jobId, onUploaded }) {
     setSuccess("");
     setProgress(null);
     if (nextFiles.length > 1) setCandidateName("");
+  }
+
+  function handleRemoveFile(fileToRemove) {
+    const remainingFiles = files.filter((item) => item.file !== fileToRemove);
+    setFiles(remainingFiles);
+    setError("");
+    setSuccess("");
+    if (remainingFiles.length === 0 && fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+    if (remainingFiles.length <= 1) setCandidateName("");
   }
 
   async function handleSubmit(event) {
@@ -189,6 +200,17 @@ export default function ResumeUpload({ jobId, onUploaded }) {
             >
               <span className="upload-result-name">{item.file.name}</span>
               <span>{item.error || item.message || "Ready to upload"}</span>
+              {!uploading && (
+                <button
+                  type="button"
+                  className="upload-remove"
+                  onClick={() => handleRemoveFile(item.file)}
+                  aria-label={`Remove ${item.file.name}`}
+                  title={`Remove ${item.file.name}`}
+                >
+                  <X size={15} aria-hidden="true" />
+                </button>
+              )}
             </li>
           ))}
         </ul>
