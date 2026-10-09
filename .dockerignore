@@ -1,0 +1,11 @@
+.git
+.env
+.venv
+**/.venv
+**/node_modules
+**/dist
+**/__pycache__
+**/*.py[cod]
+backend/.env
+backend/resume_screener.db
+backend/tests
